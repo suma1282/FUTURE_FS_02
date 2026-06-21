@@ -1,13 +1,16 @@
-import {Routes,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AddLead from "./pages/AddLead";
 import LeadList from "./pages/LeadList";
-import Login from "./pages/Login";
+import EditLead from "./pages/EditLead";
 
 
 
@@ -16,25 +19,49 @@ function App(){
 
 return(
 
+
 <Routes>
 
 
-<Route path="/" element={<Login/>}/>
+{/* Login Page */}
+
+<Route
+
+path="/"
+
+element={<Login />}
+
+/>
 
 
 
-<Route path="/*" element={
+
+
+{/* Protected CRM Pages */}
+
+<Route
+
+path="/*"
+
+element={
+
+
+<ProtectedRoute>
 
 
 <div className="app-container">
 
 
-<Sidebar/>
+<Sidebar />
+
 
 
 <div className="main">
 
-<Navbar/>
+
+<Navbar />
+
+
 
 <div className="content">
 
@@ -42,41 +69,80 @@ return(
 <Routes>
 
 
-<Route 
+
+<Route
+
 path="/dashboard"
-element={<Dashboard/>}
+
+element={<Dashboard />}
+
 />
 
 
+
+
 <Route
+
 path="/add-lead"
-element={<AddLead/>}
+
+element={<AddLead />}
+
 />
+
 
 
 <Route
+
 path="/leads"
-element={<LeadList/>}
+
+element={<LeadList />}
+
 />
 
 
+
+
+<Route
+
+path="/edit-lead/:id"
+
+element={<EditLead />}
+
+/>
+
+
+
 </Routes>
 
 
-</div>
 
 </div>
 
+
 </div>
 
 
-}/>
+</div>
+
+
+</ProtectedRoute>
+
+
+}
+
+
+/>
+
 
 
 </Routes>
+
 
 )
 
+
 }
+
+
 
 export default App;
