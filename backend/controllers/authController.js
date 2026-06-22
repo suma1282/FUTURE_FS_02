@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
-
 // REGISTER ADMIN
 
 
@@ -16,7 +15,6 @@ try{
 
 
 const {username,password}=req.body;
-
 
 const hashedPassword = await bcrypt.hash(password,10);
 
@@ -75,11 +73,7 @@ try{
 
 const {username,password}=req.body;
 
-
-
 const user = await User.findOne({username});
-
-
 
 if(!user){
 
@@ -91,8 +85,6 @@ message:"User not found"
 
 }
 
-
-
 const match = await bcrypt.compare(
 
 password,
@@ -100,8 +92,6 @@ password,
 user.password
 
 );
-
-
 
 if(!match){
 
@@ -112,10 +102,7 @@ message:"Wrong password"
 
 });
 
-
 }
-
-
 
 const token = jwt.sign(
 
@@ -127,8 +114,6 @@ const token = jwt.sign(
 
 );
 
-
-
 res.json({
 
 success:true,
@@ -137,12 +122,9 @@ token
 
 });
 
-
-
 }
 
 catch(error){
-
 
 res.status(500).json({
 
@@ -150,8 +132,6 @@ message:error.message
 
 });
 
-
 }
-
 
 };
