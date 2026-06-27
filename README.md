@@ -96,7 +96,7 @@ npm start
 | DELETE | /api/leads/:id | Delete lead |
 
 
-## 📸 Screenshots
+## 
 
 ### Login Page
 
